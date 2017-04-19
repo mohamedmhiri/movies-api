@@ -19,6 +19,12 @@ const app = express()
 // Parsers for POST data
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+// Cross Origin middleware
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  next()
+})
 
 // Set our api routes
 app.use('/', api)
@@ -29,12 +35,7 @@ app.use('/api', movie)
  */
 const port = process.env.PORT || '3000'
 app.set('port', port)
-// Cross Origin middleware
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  next()
-})
+
 /**
  * Create HTTP server.
  */
