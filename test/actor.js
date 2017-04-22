@@ -6,75 +6,75 @@ const request = require('request')
 //const server = app.listen(0)
 const supertest = require('supertest')('https://mysterious-bastion-28491.herokuapp.com')
 
-describe('Movies', () => {
-    describe('POST movie', () => {
-        it('should add a new movie', (done) => {
+describe('Actors', () => {
+    describe('POST actor', () => {
+        it('should add a new actor', (done) => {
             setTimeout(done, 30000)
             supertest
-            .post('/api/movies')
+            .post('/api/actors')
             .set('Content-Type', 'application/json')
             .send({
-                title: 'movie99',
-                year: 2000
+                name: 'actor99',
+                birth_year: 2000
             })
             .expect(200, done)
            ///.end(done)
         })
-        it('should not allow you to create duplicate movie', (done) => {
+        it('should not allow you to create duplicate actor', (done) => {
             setTimeout(done, 30000)
             supertest
-            .post('/api/movies')
+            .post('/api/actors')
             .set('Content-Type', 'application/json')
             .send({
                 _id: 5,
-                title: 'movie101',
-                year: 2000
+                name: 'actor101',
+                birth_year: 2000
             })
             .expect(400, done)
            //.end(done)
         })
     })
-    describe('GET movies', () => {
-        it('should retrieve an array of movies', (done) => {
+    describe('GET actors', () => {
+        it('should retrieve an array of actors', (done) => {
             setTimeout(done, 30000)
             supertest
-            .get('/api/movies')
+            .get('/api/actors')
             .expect(200, done)
         })
     })
 
-    describe('GET movie', () => {
-        it('should retrieve a movie', (done) => {
+    describe('GET actor', () => {
+        it('should retrieve an actor', (done) => {
             setTimeout(done, 30000)
             supertest
-            .get('/api/movies/5')
+            .get('/api/actors/5')
             .expect(200,{
                 __v: 0,
                 _id: 5,
-                actors: [],
+                movies: [],
                 isDeleted: 0,
-                title: 'movie1000',
-                year: 2011
+                name: 'actor3',
+                birth_year: 1994
             }, done)
             //.end(done)
         })
-        it('should respond not found when no movie exists', (done) => {
+        it('should respond not found when no actor exists', (done) => {
             setTimeout(done, 30000)
             supertest
-            .get('/api/movies/ll')
+            .get('/api/actors/ll')
             .expect(400, done)
             //.end(done)
         })
     })
-    describe('PUT movie', () => {
-        it('should edit a movie', (done) => {
+    describe('PUT actor', () => {
+        it('should edit an actor', (done) => {
             setTimeout(done, 30000)
             const edit = {
-                'title': 'movie1000',
-                'year': 2011
+                'name': 'actor1000',
+                'birth_year': 2011
             }
             supertest
-            .put('/api/movies/5/update')
+            .put('/api/actors/5/update')
             .set('Content-Type', 'application/json')
             .send(edit)
             .expect(200, done)
@@ -82,17 +82,17 @@ describe('Movies', () => {
         })
     })
 
-    describe('DELETE movie', () => {
-        it('should remove a movie', (done) => {
+    describe('DELETE actor', () => {
+        it('should remove an actor', (done) => {
             setTimeout(done, 30000)
             supertest
-            .put('/api/movies/5/delete')
+            .put('/api/actors/5/delete')
             .expect(200, done)
             //.end(done)
         })
-        it('should respond with an error message when no movie exists', (done) => {
+        it('should respond with an error message when no actor exists', (done) => {
             supertest
-            .put('/api/movies/ll/delete')
+            .put('/api/actors/ll/delete')
             .expect(400, done)
         })
     })
