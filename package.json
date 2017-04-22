@@ -9,13 +9,22 @@
     "express": "^4.15.2",
     "mongo": "^0.1.0",
     "mongoose": "^4.9.5",
-    "mongoose-auto-increment": "^5.0.1"
+    "mongoose-auto-increment": "^5.0.1",
+    "request": "^2.81.0"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-deporder": "^1.1.0",
+    "gulp-mocha": "^4.3.0",
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-uglify": "^2.1.2",
+    "nodemon": "^1.11.0",
+    "should": "^11.2.1",
+    "supertest": "^3.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "nodemon"
   },
   "repository": {
